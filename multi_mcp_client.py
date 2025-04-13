@@ -1,3 +1,4 @@
+from abc import ABC
 from typing import Any, List, Dict, Optional
 from langchain_core.callbacks import AsyncCallbackManagerForLLMRun
 from langchain_mcp_adapters.client import MultiServerMCPClient
@@ -9,7 +10,7 @@ from langgraph.checkpoint.memory import MemorySaver
 import httpx
 import asyncio
 
-class CustomHTTPLLM(BaseLLM):
+class CustomHTTPLLM(BaseLLM, ABC):
     endpoint: str = "https://portal.tools.cmic.online/api/dockplatform/test/groupaceBwaXq/api/v1/jiutian139Dot9B"  # 模型服务地址
     headers: Dict = {"Authorization": "Bearer YOUR_API_KEY"}  # 服务认证头
     timeout: int = 30  # 超时设置（秒）
