@@ -11,7 +11,7 @@ import httpx
 import asyncio
 
 class CustomHTTPLLM(BaseLLM, ABC):
-    endpoint: str = "https://portal.tools.cmic.online/api/dockplatform/test/groupaceBwaXq/api/v1/jiutian139Dot9B"  # 模型服务地址
+    endpoint: str = ""  # 模型服务地址
     headers: Dict = {"Authorization": "Bearer YOUR_API_KEY"}  # 服务认证头
     timeout: int = 30  # 超时设置（秒）
     max_retries: int = 3  # 失败重试次数

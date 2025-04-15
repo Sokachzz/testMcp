@@ -10,7 +10,7 @@ from langgraph.prebuilt import create_react_agent
 
 llm=ChatOpenAI(
     model="deepseek-chat",
-    openai_api_key="sk-55e7b44ab549443e91b8a1a409763ab4",
+    openai_api_key="xxxxxxx",
     openai_api_base="https://api.deepseek.com",
     max_tokens=1024,
 )
@@ -42,12 +42,10 @@ async def main():
         {
             "math": {
                 "command": "python",
-                # Make sure to update to the full absolute path to your math_server.py file
-                "args": ["f:\\codeAi\\math_server.py"],
+                "args": ["D:\\cmic\\code\\testCode\\testMcp\\math_server.py"],
                 "transport": "stdio",
             },
             "weather": {
-                # make sure you start your weather server on port 8300
                 "url": "http://localhost:8300/sse",
                 "transport": "sse",
             }
@@ -58,13 +56,11 @@ async def main():
                 """
         # 在内存中管理对话历史
         memory = MemorySaver()
-        # config = {"configurable": {"thread_id": "226", "recursion_limit":15}}
         config = {"configurable": {"thread_id": "226"}}
 
 
         agent = create_react_agent(model=llm, tools=client.get_tools(), prompt=system_prompt, checkpointer=memory,
                                    debug=False)
-        # agent = create_react_agent(model, client.get_tools())
         math_response = await agent.ainvoke({"messages": "what's (3 + 5) x 12?"}, config=config)
         print_conversation(math_response)
         math_response = await agent.ainvoke({"messages": "what's the result devided by 6?"}, config=config)
